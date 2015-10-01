@@ -2,6 +2,7 @@ package launch;
 
 import db.ConnectionHandler;
 import db.DAO.ClubDAO;
+import db.DAO.DAOFactory;
 import db.DAO.PlayerDAO;
 import db.entities.Club;
 import db.entities.Player;
@@ -19,10 +20,10 @@ public class Main {
 
         Connection connection = ConnectionHandler.getConnectionToDb(DatabaseProperties.DBHOST, DatabaseProperties.DBPORT, DatabaseProperties.DBNAME);
 
-        PlayerDAO playerDAO = new PlayerDAO();
+        PlayerDAO playerDAO = DAOFactory.getInstance().getPlayerDAO();
 //        Player player = playerDAO.findById(1);
 
-        ClubDAO clubDAO = new ClubDAO();
+        ClubDAO clubDAO = DAOFactory.getInstance().getClubDAO();
 //        Club club = clubDAO.findById(2);
 
 //        Club club2 = new Club();
