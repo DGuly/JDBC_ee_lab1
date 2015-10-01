@@ -20,15 +20,15 @@ public class DBInitializator {
             int result = statement.executeUpdate(
                     "CREATE TABLE Club (ID INT)");
             result = statement.executeUpdate(
-                    "CREATE TABLE Player (ID INT, CLUB_ID INT)");
+                    "CREATE TABLE Player (ID INT, CLUB_ID INT, NAME VARCHAR(20))");
             result = statement.executeUpdate(
-                    "CREATE TABLE Goal (ID INT, PLAYERSCORED_ID INT, KEEPERLOST_ID INT)");
+                    "CREATE TABLE Goal (ID INT, PLAYERSCORED_ID INT, KEEPERLOST_ID INT, MATCH_ID INT)");
             result = statement.executeUpdate(
-                    "CREATE TABLE Match (ID INT, PLAYERSCORED_ID INT, KEEPERLOST_ID INT)");
+                    "CREATE TABLE Match (ID INT, HOME_CLUB_ID INT, GUEST_CLUB_ID INT)");
             result = statement.executeUpdate(
-                    "CREATE TABLE Goal (ID INT, PLAYERSCORED_ID INT, KEEPERLOST_ID INT)");
+                    "CREATE TABLE Coach (ID INT, CLUB_ID INT, NAME VARCHAR(20))");
             result = statement.executeUpdate(
-                    "CREATE TABLE Goal (ID INT, PLAYERSCORED_ID INT, KEEPERLOST_ID INT)");
+                    "CREATE TABLE Player_matches (PLAYER_ID INT, MATCH_ID INT)");
 
         } catch (SQLException e) {
             e.printStackTrace();
