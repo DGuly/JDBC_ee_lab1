@@ -5,6 +5,8 @@ import db.entities.Player;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Dmytry on 10/2/2015.
@@ -39,6 +41,33 @@ public class PlayerDAO extends GenericDAOImpl<Player> {
         return resultPlayer;
     }
 
+    @Override
+    public List<Player> mapAll(ResultSet resultSet) {
+        List<Player> resultList = new ArrayList<Player>();
+        int currentClubId;
+        try {
+            while (resultSet.next()) {
+                Player tempPlayer = new Player();
+                tempPlayer.setId(resultSet.getInt("ID"));
+                currentClubId = Integer.parseInt(resultSet.getString("CLUB_ID"));
+                tempPlayer.setName(resultSet.getString("NAME"));
+
+                System.out.println(resultList.toString());
+
+                resultList.add(tempPlayer);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // TODO not forget initialize it
+        //resultPlayer.setCurrentClub();
+
+        System.out.println("The result of all player getting query is : " + resultList.toString());
+        return resultList;
+    }
+
+
     public void insert(Player player) {
         Statement statement;
         try {
@@ -51,4 +80,6 @@ public class PlayerDAO extends GenericDAOImpl<Player> {
         }
         System.out.println("Insert in table Player succeed!");
     }
+
+
 }
