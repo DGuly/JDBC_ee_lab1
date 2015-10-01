@@ -27,7 +27,15 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
     }
 
     public void deleteById(Object id) {
-
+        try {
+            System.out.println(String.format("DELETE * FROM %s WHERE id=%s", tableName, id));
+            String query = String.format("DELETE * FROM %s WHERE id=%s", tableName, id);
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            System.out.println("Error while trying to delete data!");
+            e.printStackTrace();
+        }
     }
 
 }

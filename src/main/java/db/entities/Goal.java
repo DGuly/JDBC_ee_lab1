@@ -41,6 +41,12 @@ public class Goal {
         this.keeperSkipped = keeperSkipped;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Goal{" +
+                "id=" + id +
+                ", playerScored=" + playerScored +
+                ", keeperSkipped=" + keeperSkipped +
+                '}';
+    }
 }

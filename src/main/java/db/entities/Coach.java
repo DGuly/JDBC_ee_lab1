@@ -41,4 +41,13 @@ public class Coach {
     public void setCurrentClub(Club currentClub) {
         this.currentClub = currentClub;
     }
+
+    @Override
+    public String toString() {
+        return "Coach{" +
+                "id=" + id +
+                ", currentClub=" + currentClub +
+                ", clubList=" + clubList +
+                '}';
+    }
 }

@@ -30,8 +30,8 @@ public class DBInitializator {
 //            result = statement.executeUpdate(
 //                    "CREATE TABLE Player_matches (PLAYER_ID BIGSERIAL, MATCH_ID INT)");
 
-//               int result = statement.executeUpdate(
-//                    "INSERT INTO Player (CLUB_ID, NAME) VALUES (1, 'Urec')");
+               int result = statement.executeUpdate(
+                    "INSERT INTO Club (NAME) VALUES ('Liverpool')");
         } catch (SQLException e) {
             e.printStackTrace();
         }

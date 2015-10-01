@@ -4,14 +4,17 @@ import db.entities.Player;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * Created by Dmytry on 10/2/2015.
  */
-public class PlayerDAO extends GenericDAOImpl<Player>{
+public class PlayerDAO extends GenericDAOImpl<Player> {
 
-    public PlayerDAO(String tableName) {
-        this.tableName = tableName;
+
+
+    public PlayerDAO() {
+        tableName = "Player";
     }
 
     @Override
@@ -34,5 +37,18 @@ public class PlayerDAO extends GenericDAOImpl<Player>{
 
         System.out.println("The result of player getting query is : " + resultPlayer.toString());
         return resultPlayer;
+    }
+
+    public void insert(Player player) {
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+
+               int result = statement.executeUpdate(
+                    String.format("INSERT INTO Player (CLUB_ID, NAME) VALUES (%s, '%s')", player.getCurrentClub().getId(), player.getName()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Insert in table Player succeed!");
     }
 }

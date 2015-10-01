@@ -45,4 +45,13 @@ public class Match {
     public void addGoalScored(Goal goal) {
         goalsScored.add(goal);
     }
+
+    @Override
+    public String toString() {
+        return "Match{" +
+                "id=" + id +
+                ", clubsPlaying=" + clubsPlaying +
+                ", goalsScored=" + goalsScored +
+                '}';
+    }
 }
