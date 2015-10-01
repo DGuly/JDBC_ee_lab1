@@ -24,18 +24,18 @@ public class Main {
 //        Player player = playerDAO.findById(1);
 
         ClubDAO clubDAO = DAOFactory.getInstance().getClubDAO();
-//        Club club = clubDAO.findById(2);
+        Club club2 = clubDAO.findById(4);
 
 //        Club club2 = new Club();
 //        club2.setName("Chelsea");
 //        clubDAO.insert(club2);
 //
-//        Player player2 = new Player();
-//        player2.setName("Lampard");
-//        player2.setCurrentClub(club2);
-//        playerDAO.insert(player2);
+        Player player2 = new Player();
+        player2.setName("Drogba");
+        player2.setCurrentClub(club2);
+        playerDAO.insert(player2);
 
-        Club club = clubDAO.findById(2);
+        //Club club = clubDAO.findById(2);
 //        clubDAO.deleteById(1);
 //        clubDAO.deleteById(2);
         List<Player> players = playerDAO.getAll();

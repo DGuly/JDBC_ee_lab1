@@ -22,7 +22,7 @@ public class PlayerDAO extends GenericDAOImpl<Player> {
     @Override
     public Player map(ResultSet resultSet) {
         Player resultPlayer = new Player();
-        int currentClubId;
+        int currentClubId = -1;
 
         try {
             while (resultSet. next()) {
@@ -31,11 +31,15 @@ public class PlayerDAO extends GenericDAOImpl<Player> {
                 resultPlayer.setName(resultSet.getString("NAME"));
             }
         } catch (SQLException e) {
+            System.out.println("Error while mapping user resultset");
             e.printStackTrace();
         }
 
-        // TODO not forget initialize it
-        //resultPlayer.setCurrentClub();
+        if (currentClubId == -1) {
+            System.out.println("Error in getting current club id for user : " + resultPlayer.getName());
+        } else {
+            resultPlayer.setCurrentClub(DAOFactory.getInstance().getClubDAO().findById(currentClubId));
+        }
 
         System.out.println("The result of player getting query is : " + resultPlayer.toString());
         return resultPlayer;
@@ -44,7 +48,7 @@ public class PlayerDAO extends GenericDAOImpl<Player> {
     @Override
     public List<Player> mapAll(ResultSet resultSet) {
         List<Player> resultList = new ArrayList<Player>();
-        int currentClubId;
+        int currentClubId = -1;
         try {
             while (resultSet.next()) {
                 Player tempPlayer = new Player();
@@ -54,14 +58,18 @@ public class PlayerDAO extends GenericDAOImpl<Player> {
 
                 System.out.println(resultList.toString());
 
+                if (currentClubId == -1) {
+                    System.out.println("Error in getting current club id for user : " + tempPlayer.getName());
+                } else {
+                    tempPlayer.setCurrentClub(DAOFactory.getInstance().getClubDAO().findById(currentClubId));
+                }
+
                 resultList.add(tempPlayer);
             }
         } catch (SQLException e) {
+            System.out.println("Error while mapping all users resultset");
             e.printStackTrace();
         }
-
-        // TODO not forget initialize it
-        //resultPlayer.setCurrentClub();
 
         System.out.println("The result of all player getting query is : " + resultList.toString());
         return resultList;
