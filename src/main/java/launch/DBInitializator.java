@@ -18,18 +18,20 @@ public class DBInitializator {
             statement = connection.createStatement();
 
 //            int result = statement.executeUpdate(
-//                    "CREATE TABLE Club (ID INT)");
+//                    "CREATE TABLE Club (ID BIGSERIAL)");
 //            result = statement.executeUpdate(
-//                    "CREATE TABLE Player (ID INT, CLUB_ID INT, NAME VARCHAR(20))");
+//                    "CREATE TABLE Player (ID BIGSERIAL, CLUB_ID INT, NAME VARCHAR(20))");
 //            result = statement.executeUpdate(
-//                    "CREATE TABLE Goal (ID INT, PLAYERSCORED_ID INT, KEEPERLOST_ID INT, MATCH_ID INT)");
+//                    "CREATE TABLE Goal (ID BIGSERIAL, PLAYERSCORED_ID INT, KEEPERLOST_ID INT, MATCH_ID INT)");
 //            result = statement.executeUpdate(
-//                    "CREATE TABLE Match (ID INT, HOME_CLUB_ID INT, GUEST_CLUB_ID INT)");
+//                    "CREATE TABLE Match (ID BIGSERIAL, HOME_CLUB_ID INT, GUEST_CLUB_ID INT)");
 //            result = statement.executeUpdate(
-//                    "CREATE TABLE Coach (ID INT, CLUB_ID INT, NAME VARCHAR(20))");
+//                    "CREATE TABLE Coach (ID BIGSERIAL, CLUB_ID INT, NAME VARCHAR(20))");
 //            result = statement.executeUpdate(
-//                    "CREATE TABLE Player_matches (PLAYER_ID INT, MATCH_ID INT)");
+//                    "CREATE TABLE Player_matches (PLAYER_ID BIGSERIAL, MATCH_ID INT)");
 
+//               int result = statement.executeUpdate(
+//                    "INSERT INTO Player (CLUB_ID, NAME) VALUES (1, 'Urec')");
         } catch (SQLException e) {
             e.printStackTrace();
         }

@@ -13,6 +13,9 @@ public class Player {
     private List<Match> matchesPlayed;
     public PlayerType playerType;
 
+    public Player() {
+    }
+
     public Player(int id, String name, Club currentClub, List<Goal> scoredGoals, List<Match> matchesPlayed, PlayerType playerType) {
         this.id = id;
         this.name = name;
@@ -68,5 +71,17 @@ public class Player {
 
     public void setPlayerType(PlayerType playerType) {
         this.playerType = playerType;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", currentClub=" + currentClub +
+                ", scoredGoals=" + scoredGoals +
+                ", matchesPlayed=" + matchesPlayed +
+                ", playerType=" + playerType +
+                '}';
     }
 }
