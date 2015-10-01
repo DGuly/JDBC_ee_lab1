@@ -30,8 +30,8 @@ public class ConnectionHandler {
         try {
 
             connection = DriverManager.getConnection(
-                    String.format("jdbc:postgresql://%s:%s/%s", dbLocation, dbPort, dbName), DatabaseProperties.dbUser,
-                    DatabaseProperties.dbPassword);
+                    String.format("jdbc:postgresql://%s:%s/%s", dbLocation, dbPort, dbName), DatabaseProperties.DBUSER,
+                    DatabaseProperties.DBPASSWORD);
 
         } catch (SQLException e) {
             if (connection != null) {
