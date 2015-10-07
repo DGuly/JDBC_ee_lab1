@@ -6,7 +6,7 @@ import java.util.List;
  * Created by Dmytry on 10/1/2015.
  */
 public class Club {
-    private int id;
+    private int id = -1;
     private String name;
     private List<Player> players;
 

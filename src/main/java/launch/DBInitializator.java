@@ -1,6 +1,7 @@
 package launch;
 
 import db.ConnectionHandler;
+import db.entities.Player;
 import utils.DatabaseProperties;
 
 import java.sql.Connection;
@@ -16,9 +17,8 @@ public class DBInitializator {
         Statement statement = null;
         try {
             statement = connection.createStatement();
-
 //            int result = statement.executeUpdate(
-//                    "CREATE TABLE Club (ID BIGSERIAL)");
+//                    "CREATE TABLE Club (ID BIGSERIAL, NAME VARCHAR(20))");
 //            result = statement.executeUpdate(
 //                    "CREATE TABLE Player (ID BIGSERIAL, CLUB_ID INT, NAME VARCHAR(20))");
 //            result = statement.executeUpdate(

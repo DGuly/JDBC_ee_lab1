@@ -24,20 +24,22 @@ public class Main {
 //        Player player = playerDAO.findById(1);
 
         ClubDAO clubDAO = DAOFactory.getInstance().getClubDAO();
-        Club club2 = clubDAO.findById(4);
+        Club club2 = clubDAO.findById(2);
 
 //        Club club2 = new Club();
-//        club2.setName("Chelsea");
-//        clubDAO.insert(club2);
+        club2.setName("ChelseaUPDATED");
+        clubDAO.update(club2);
 //
-        Player player2 = new Player();
-        player2.setName("Drogba");
-        player2.setCurrentClub(club2);
-        playerDAO.insert(player2);
+//        Club club3 = clubDAO.findById(1);
+//        Player player2 = playerDAO.findById(1);
+//        player2.setName("Shevchenko");
+//        player2.setCurrentClub(club3);
+//        playerDAO.update(player2);
 
         //Club club = clubDAO.findById(2);
 //        clubDAO.deleteById(1);
 //        clubDAO.deleteById(2);
+
         List<Player> players = playerDAO.getAll();
         List<Club> clubs = clubDAO.getAll();
 //        playerDAO.deleteById(1);

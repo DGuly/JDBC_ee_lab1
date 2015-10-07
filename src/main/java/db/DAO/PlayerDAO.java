@@ -89,5 +89,25 @@ public class PlayerDAO extends GenericDAOImpl<Player> {
         System.out.println("Insert in table Player succeed!");
     }
 
+    public void update(Player player) {
+        // first getting player to check if it exists. If no, inserting it, if yes, updating.
+        PlayerDAO playerDAO = DAOFactory.getInstance().getPlayerDAO();
+        Player playerToUpdate = playerDAO.findById(player.getId());
+        if (playerToUpdate.getId() == 0) {
+            playerDAO.insert(player);
+            System.out.println("Player " + player.getName() + " was inserted as it is not existing.");
+            return;
+        }
+        Statement statement;
+        try {
+            statement = connection.createStatement();
 
+            int result = statement.executeUpdate(
+                    String.format("UPDATE Player SET CLUB_ID = '%s', NAME = '%s' WHERE ID = '%s';",
+                            player.getCurrentClub().getId(), player.getName(), player.getId()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Update in table Player succeed!");
+    }
 }

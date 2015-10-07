@@ -23,7 +23,7 @@ public class ClubDAO extends GenericDAOImpl<Club> {
         Club resultClub = new Club();
 
         try {
-            while (resultSet. next()) {
+            while (resultSet.next()) {
                 resultClub.setId(resultSet.getInt("ID"));
                 resultClub.setName(resultSet.getString("NAME"));
             }
@@ -64,5 +64,26 @@ public class ClubDAO extends GenericDAOImpl<Club> {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    public void update(Club club) {
+        // first getting player to check if it exists. If no, inserting it, if yes, updating.
+        ClubDAO clubDAO = DAOFactory.getInstance().getClubDAO();
+        Club clubToUpdate = clubDAO.findById(club.getId());
+        if (clubToUpdate.getId() == 0) {
+            clubDAO.insert(club);
+            System.out.println("Club " + clubToUpdate.getName() + " was inserted as it is not existing.");
+            return;
+        }
+        Statement statement;
+        try {
+            statement = connection.createStatement();
+
+            int result = statement.executeUpdate(
+                    String.format("UPDATE Club SET NAME = '%s' WHERE ID = '%s';",
+                            club.getName(), club.getId()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Update in table Player succeed!");
     }
 }
