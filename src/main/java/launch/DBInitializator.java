@@ -12,7 +12,7 @@ import java.sql.Statement;
  */
 public class DBInitializator {
     public static void main(String[] args) {
-        Connection connection = ConnectionHandler.getConnectionToDb(DatabaseProperties.DBHOST, DatabaseProperties.DBPORT, DatabaseProperties.DBNAME);
+        Connection connection = ConnectionHandler.getConnectionToDb(DatabaseProperties.DB_HOST, DatabaseProperties.DB_PORT, DatabaseProperties.DB_NAME);
         Statement statement = null;
         try {
             statement = connection.createStatement();
@@ -30,8 +30,8 @@ public class DBInitializator {
 //            result = statement.executeUpdate(
 //                    "CREATE TABLE Player_matches (PLAYER_ID BIGSERIAL, MATCH_ID INT)");
 
-               int result = statement.executeUpdate(
-                    "INSERT INTO Club (NAME) VALUES ('Liverpool')");
+//               int result = statement.executeUpdate(
+//                    "INSERT INTO Club (NAME) VALUES ('Liverpool')");
         } catch (SQLException e) {
             e.printStackTrace();
         }

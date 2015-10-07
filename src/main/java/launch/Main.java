@@ -18,7 +18,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Connection connection = ConnectionHandler.getConnectionToDb(DatabaseProperties.DBHOST, DatabaseProperties.DBPORT, DatabaseProperties.DBNAME);
+        Connection connection = ConnectionHandler.getConnectionToDb(DatabaseProperties.DB_HOST, DatabaseProperties.DB_PORT, DatabaseProperties.DB_NAME);
 
         PlayerDAO playerDAO = DAOFactory.getInstance().getPlayerDAO();
 //        Player player = playerDAO.findById(1);

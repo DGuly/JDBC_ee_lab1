@@ -12,7 +12,7 @@ import java.util.List;
  * Created by Dmytry on 10/1/2015.
  */
 public abstract class GenericDAOImpl<T> implements GenericDAO<T>{
-    protected Connection connection = ConnectionHandler.getConnectionToDb(DatabaseProperties.DBHOST, DatabaseProperties.DBPORT, DatabaseProperties.DBNAME);
+    protected Connection connection = ConnectionHandler.getConnectionToDb(DatabaseProperties.DB_HOST, DatabaseProperties.DB_PORT, DatabaseProperties.DB_NAME);
     protected String tableName;
 
     public T findById(Object id) {
