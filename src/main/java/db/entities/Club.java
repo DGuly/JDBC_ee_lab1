@@ -12,6 +12,10 @@ public class Club {
 
     public Club() {}
 
+    public Club(String name) {
+        this.name = name;
+    }
+
     public Club(int id, List<Player> players, List<Coach> coaches) {
         this.id = id;
         this.players = players;

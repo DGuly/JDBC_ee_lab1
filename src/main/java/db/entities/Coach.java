@@ -8,7 +8,13 @@ import java.util.List;
 public class Coach {
     private int id;
     private Club currentClub;
+    private String name;
     private List<Club> clubList;
+
+    public Coach(String name, Club currentClub) {
+        this.name = name;
+        this.currentClub = currentClub;
+    }
 
     public Coach() {}
 
@@ -42,11 +48,20 @@ public class Coach {
         this.currentClub = currentClub;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Coach{" +
                 "id=" + id +
                 ", currentClub=" + currentClub +
+                ", name='" + name + '\'' +
                 ", clubList=" + clubList +
                 '}';
     }

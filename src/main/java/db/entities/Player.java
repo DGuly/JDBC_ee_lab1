@@ -13,7 +13,11 @@ public class Player {
     private List<Match> matchesPlayed;
     public PlayerType playerType;
 
-    public Player() {
+    public Player() {}
+
+    public Player(String name, Club currentClub) {
+        this.name = name;
+        this.currentClub = currentClub;
     }
 
     public Player(int id, String name, Club currentClub, List<Goal> scoredGoals, List<Match> matchesPlayed, PlayerType playerType) {

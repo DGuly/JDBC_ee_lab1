@@ -7,6 +7,8 @@ public class DAOFactory {
     private static DAOFactory instance = null;
     private static ClubDAO clubDAO = null;
     private static PlayerDAO playerDAO = null;
+    private static CoachDAO coachDAO = null;
+    private static MatchDAO matchDAO = null;
 
     private DAOFactory() {}
 
@@ -29,5 +31,19 @@ public class DAOFactory {
             playerDAO = new PlayerDAO();
         }
         return playerDAO;
+    }
+
+    public CoachDAO getCoachDAO() {
+        if (coachDAO == null) {
+            coachDAO = new CoachDAO();
+        }
+        return coachDAO;
+    }
+
+    public MatchDAO getMatchDAO() {
+        if (matchDAO == null) {
+            matchDAO = new MatchDAO();
+        }
+        return matchDAO;
     }
 }

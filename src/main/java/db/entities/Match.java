@@ -1,5 +1,6 @@
 package db.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -7,15 +8,15 @@ import java.util.List;
  */
 public class Match {
     private int id;
-    private List<Club> clubsPlaying;
+    private Club homeClub;
+    private Club guestClub;
     private List<Goal> goalsScored;
 
     public Match(){}
 
-    public Match(int id, List<Club> clubsPlaying, List<Goal> goalsScored) {
-        this.id = id;
-        this.clubsPlaying = clubsPlaying;
-        this.goalsScored = goalsScored;
+    public Match(final Club homeClub, final Club guestClub) {
+        this.homeClub = homeClub;
+        this.guestClub = guestClub;
     }
 
     public int getId() {
@@ -26,12 +27,30 @@ public class Match {
         this.id = id;
     }
 
-    public List<Club> getClubsPlaying() {
-        return clubsPlaying;
+    public Club getHomeClub() {
+        return homeClub;
     }
 
-    public void setClubsPlaying(List<Club> clubsPlaying) {
-        this.clubsPlaying = clubsPlaying;
+    @Override
+    public String toString() {
+        return "Match{" +
+                "id=" + id +
+                ", homeClub=" + homeClub +
+                ", guestClub=" + guestClub +
+                ", goalsScored=" + goalsScored +
+                '}';
+    }
+
+    public void setHomeClub(Club homeClub) {
+        this.homeClub = homeClub;
+    }
+
+    public Club getGuestClub() {
+        return guestClub;
+    }
+
+    public void setGuestClub(Club guestClub) {
+        this.guestClub = guestClub;
     }
 
     public List<Goal> getGoalsScored() {
@@ -46,12 +65,4 @@ public class Match {
         goalsScored.add(goal);
     }
 
-    @Override
-    public String toString() {
-        return "Match{" +
-                "id=" + id +
-                ", clubsPlaying=" + clubsPlaying +
-                ", goalsScored=" + goalsScored +
-                '}';
-    }
 }
