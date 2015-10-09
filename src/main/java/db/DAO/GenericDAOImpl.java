@@ -19,8 +19,9 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
         ResultSet resultSet = null;
         try {
             System.out.println(String.format("SELECT * FROM %s WHERE id=%s", tableName, id));
-            String query = String.format("SELECT * FROM %s WHERE id=%s", tableName, id);
+            String query = String.format("SELECT * FROM %s WHERE id=?", tableName);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, (int)id);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -31,8 +32,9 @@ public abstract class GenericDAOImpl<T> implements GenericDAO<T> {
     public void deleteById(Object id) {
         try {
             System.out.println(String.format("DELETE FROM %s WHERE id=%s", tableName, id));
-            String query = String.format("DELETE FROM %s WHERE id=%s", tableName, id);
+            String query = String.format("DELETE FROM %s WHERE id=?", tableName);
             PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, (int)id);
             preparedStatement.executeQuery();
         } catch (SQLException e) {
             System.out.println("Error while trying to delete data!");

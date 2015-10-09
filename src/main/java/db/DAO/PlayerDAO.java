@@ -2,11 +2,9 @@ package db.DAO;
 
 import db.entities.Club;
 import db.entities.Player;
+import sun.tools.java.Type;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,12 +123,6 @@ public class PlayerDAO extends GenericDAOImpl<Player> {
             System.out.println(String.format("SELECT * FROM %s INNER JOIN Match ON Player.CLUB_ID = Match.HOME_CLUB_ID" +
                     " INNER JOIN %s ON home_club_id = %s.id;", "Player", "Match", "Club"));
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-//            preparedStatement.setString(1, "Player");
-//            preparedStatement.setString(2, "Match");
-//            preparedStatement.setString(3, "Player");
-//            preparedStatement.setString(4, "Match");
-//            preparedStatement.setString(5, "Club");
-//            preparedStatement.setString(6, "Club");
 
             resultSet = preparedStatement.executeQuery();
 
@@ -155,5 +147,17 @@ public class PlayerDAO extends GenericDAOImpl<Player> {
             e.printStackTrace();
         }
         return playerList;
+    }
+
+    public ResultSet callable() throws SQLException {
+        String callableSQL = "CREATE FUNCTION getallplayers(int) RETURNS SETOF Player AS $$ SELECT * FROM Player $$ LANGUAGE SQL;";
+        Statement statement = connection.createStatement();
+        statement.executeUpdate(callableSQL);
+
+        connection.setAutoCommit(false);
+        callableSQL = "SELECT getallplayers( ? )";
+        CallableStatement callableStatement = connection.prepareCall(callableSQL);
+        callableStatement.setInt(1, 1);
+        return callableStatement.executeQuery();
     }
 }

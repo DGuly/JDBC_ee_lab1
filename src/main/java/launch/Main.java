@@ -9,6 +9,8 @@ import db.entities.Player;
 import utils.DatabaseProperties;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -127,12 +129,19 @@ public class Main {
 
 //        matchDAO.update(match1);
 //        matchDAO.update(match2);
-//--------------------------------------- UPDATE -----------------------------------------------------------------------
+//--------------------------------------- RELATIONSHIP -----------------------------------------------------------------------
 
-        //playerDAO.getPlayersWithHomeMatches();
+        playerDAO.getPlayersWithHomeMatches();
         clubDAO.getPlayers(club1);
+        try {
+            ResultSet rs = playerDAO.callable();
+            rs.next();
+            System.out.println(rs.getObject(1));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-
+//--------------------------------------- RELATIONSHIP -----------------------------------------------------------------------
 //        Coach coach = new Coach();
 //        coach.setName("Fergusson");
 //        coach.setCurrentClub(clubDAO.findById(2));
