@@ -128,6 +128,11 @@ public class Main {
 //        matchDAO.update(match1);
 //        matchDAO.update(match2);
 //--------------------------------------- UPDATE -----------------------------------------------------------------------
+
+        //playerDAO.getPlayersWithHomeMatches();
+        clubDAO.getPlayers(club1);
+
+
 //        Coach coach = new Coach();
 //        coach.setName("Fergusson");
 //        coach.setCurrentClub(clubDAO.findById(2));

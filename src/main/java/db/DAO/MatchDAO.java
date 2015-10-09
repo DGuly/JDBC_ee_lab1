@@ -124,4 +124,6 @@ public class MatchDAO extends GenericDAOImpl<Match>{
         System.out.println("The result of all player getting query is : " + resultList.toString());
         return resultList;
     }
+
+
 }

@@ -3,6 +3,7 @@ package db.DAO;
 import db.entities.Club;
 import db.entities.Player;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -85,5 +86,37 @@ public class ClubDAO extends GenericDAOImpl<Club> {
             e.printStackTrace();
         }
         System.out.println("Update in table Player succeed!");
+    }
+
+    public List<Player> getPlayers(Club club) {
+        ResultSet resultSet = null;
+        try {
+            System.out.println(String.format("SELECT * from %s WHERE %s.CLUB_ID = %s;", "Player", "Player", club.getId()));
+            String query = String.format("SELECT * from %s WHERE %s.CLUB_ID = ?;", "Player", "Player");
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, club.getId());
+            resultSet = preparedStatement.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        List<Player> resultList = new ArrayList<>();
+        try {
+            while (resultSet.next()) {
+                Player player = new Player();
+
+                player.setId(resultSet.getInt("ID"));
+                player.setName(resultSet.getString("NAME"));
+                Club playerClub = DAOFactory.getInstance().getClubDAO().findById(resultSet.getInt("CLUB_ID"));
+                player.setCurrentClub(playerClub);
+
+                resultList.add(player);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("The result of all player getting query is : " + resultList.toString());
+        return resultList;
     }
 }

@@ -1,7 +1,9 @@
 package db.DAO;
 
+import db.entities.Club;
 import db.entities.Player;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -109,5 +111,49 @@ public class PlayerDAO extends GenericDAOImpl<Player> {
             e.printStackTrace();
         }
         System.out.println("Update in table Player succeed!");
+    }
+
+    public List<Player> getPlayersWithHomeMatches() {
+        List<Player> playerList = new ArrayList<>();
+        Club club = new Club();
+
+        ResultSet resultSet = null;
+        try {
+            String query = String.format("SELECT *, %s.name as playerName, %s.name as clubName FROM %s INNER JOIN %s ON " +
+                            "%s.CLUB_ID = %s.HOME_CLUB_ID INNER JOIN %s ON home_club_id = %s.id;",
+                    "Player", "Club", "Player", "Match", "Player", "Match", "Club", "Club");
+            System.out.println(String.format("SELECT * FROM %s INNER JOIN Match ON Player.CLUB_ID = Match.HOME_CLUB_ID" +
+                    " INNER JOIN %s ON home_club_id = %s.id;", "Player", "Match", "Club"));
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+//            preparedStatement.setString(1, "Player");
+//            preparedStatement.setString(2, "Match");
+//            preparedStatement.setString(3, "Player");
+//            preparedStatement.setString(4, "Match");
+//            preparedStatement.setString(5, "Club");
+//            preparedStatement.setString(6, "Club");
+
+            resultSet = preparedStatement.executeQuery();
+
+            try {
+                Player player = new Player();
+                while (resultSet. next()) {
+                    player.setId(resultSet.getInt("ID"));
+                    club.setId(Integer.parseInt(resultSet.getString("CLUB_ID")));
+                    player.setName(resultSet.getString("playerName"));
+                    club.setName(resultSet.getString("clubName"));
+                    player.setCurrentClub(club);
+                    System.out.println(player);
+
+                    playerList.add(player);
+                }
+            } catch (SQLException e) {
+                System.out.println("Error while mapping user resultset");
+                e.printStackTrace();
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return playerList;
     }
 }
